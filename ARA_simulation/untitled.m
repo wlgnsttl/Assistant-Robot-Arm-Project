@@ -5,50 +5,29 @@ xlabel('X'); ylabel('Y'); zlabel('Z'); view(3);
 
 deg2rad = pi/180;
 
-q1 = 0 * deg2rad;
-q2 = 0 * deg2rad;
-q3 = 0 * deg2rad;
-q4 = 0 * deg2rad;
-q5 = 0 * deg2rad;
-q6 = 0 * deg2rad;
+syms q1 q2 q3 q4 q5 q6 real   % 조인트 변수 (rad)
 
 % Base 프레임 (원점)
-drawFrame(eye(4),'0',5,'-');
+% drawFrame(eye(4),'0',5,'-');
 
 % J1
-T1 = myTrvec2tform([0 7.5 0]) * myAxang2tform([1 0 0 pi/2]);
+T1 = myTrvec2tform([0 0 69.5]);
 T1_q = T1 * myAxang2tform([0 0 1 q1]);
-drawFrame(T1_q,'1', 5);
+% drawFrame(T1_q,'1', 5);
 
 % J2
-T2 = T1_q * myTrvec2tform([-2 0 -7.5]) * myAxang2tform([0 0 1 pi]) * myAxang2tform([1 0 0 -pi/2]);
+T2 = T1_q * myTrvec2tform([0 0 36]) * myAxang2tform([0 1 0 pi/2]) * myAxang2tform([1 0 0 -pi/2]);
 T2_q = T2 * myAxang2tform([0 0 1 q2]);
-drawFrame(T2_q,'2', 5);
+% drawFrame(T2_q,'2', 5);
 
 % J3
-T3 = T2_q * myTrvec2tform([-3.5014 19.6897 0]) * myAxang2tform([0 0 1 pi]) * myAxang2tform([0 1 0 pi]);
+T3 = T2_q * myTrvec2tform([-215 -36 0]) * myAxang2tform([0 0 1 -135*deg2rad]) * myAxang2tform([1 0 0 pi]);
 T3_q = T3 * myAxang2tform([0 0 1 q3]);
-drawFrame(T3_q,'3', 5);
+% drawFrame(T3_q,'3', 5);
 
 % J4
-T4 = T3_q * myTrvec2tform([0 -17.8140 0]) * myAxang2tform([0 0 1 pi]) * myAxang2tform([0 1 0 pi]);
-T4_q = T4 * myAxang2tform([0 0 1 q4]);
-drawFrame(T4_q,'4', 5);
-
-% J5
-T5 = T4_q * myTrvec2tform([0 7.3 0]) * myAxang2tform([0 1 0 pi/2]);
-T5_q = T5 * myAxang2tform([0 0 1 q5]);
-drawFrame(T5_q,'5', 5);
-
-% J6
-T6 = T5_q * myTrvec2tform([5.8937 0 0]) * myAxang2tform([0 1 0 -pi/2]);
-T6_q = T6 * myAxang2tform([0 0 1 q6]);
-drawFrame(T6_q,'6', 6);
-
-% end-effector
-T7 = T6_q * myTrvec2tform([-9.9246 -0.3533 -1.3497]) * myAxang2tform([0 0 1 pi]);
-drawFrame(T7,'7', 7);
-
+T4 = T3_q * myTrvec2tform([155.12 -101.12 0]) * myAxang2tform([0 0 1 -45*deg2rad]);
+% drawFrame(T4,'4', 5);
 
 
 %% --- 사용자 정의 함수들 ---

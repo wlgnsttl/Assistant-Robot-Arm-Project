@@ -3,15 +3,19 @@ close all;
 clc;
 
 %%
-EndTime = 4;
-AccelTime = 1;
+EndTime = 2;
+AccelTime = 0.5;
 
 
 %%
-start_point = [0 -40 -100 25 90 90]';  % deg
-transit_point = [
-    -20 -30 -130 45 45 10;
-    ]';
-end_point = [0 -40 -100 25 90 90]';
-way_point = [start_point, transit_point, end_point]; 
+theta1 = [-50 20 0]';
+theta2 = [-30 -50 0]';
+theta3 = theta1 - theta2 - 90;
+
+tmp = zeros(3,1);
+
+start_point = [0 0 0 0 0 0]';  % deg
+transit_point = [tmp theta1 theta2 theta3 tmp tmp]';
+way_point = [start_point, transit_point]; 
+
 
